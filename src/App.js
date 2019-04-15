@@ -17,15 +17,13 @@ class BooksApp extends React.Component {
           books
         }))
       })
-
-      console.log("Books")
   }
   render() {
 
     return (
 
       <div className="app">
-            { /* JSON.stringify(this.state) */ /* If you want to peek at the JSON */ } 
+            { /*JSON.stringify(this.state) */ /* If you want to peek at the JSON */ } 
         { /*this.state.books.length */}
 
         <Route path='/search' render = { () => (
