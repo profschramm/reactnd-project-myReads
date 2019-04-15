@@ -27,7 +27,10 @@ class BooksApp extends React.Component {
         { /*this.state.books.length */}
 
         <Route path='/search' render = { () => (
+          <div>
+            <p> Hello </p>
             <SearchBooks />
+            </div>
         )}/>
 
         <Route exact path='/' render={ () => (
