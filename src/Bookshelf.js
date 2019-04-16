@@ -13,13 +13,15 @@ class Bookshelf extends Component {
 
     render() {
 
+/* From before when I passed in ALL books 
         const booksOnThisShelf = this.props.books.filter( (book) => (
             book.shelf === this.props.bookshelfName
         ))
+*/
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.bookshelfTitle}</h2>
-                <BookGrid books={booksOnThisShelf}/>
+                <BookGrid books={this.props.books}/>
             </div>
         )
     }

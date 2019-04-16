@@ -7,19 +7,54 @@ import Bookshelf from './Bookshelf'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    readBooks: [],
+    currentlyReadBooks: [],
+    wantToReadBooks: [],
+  }
+
+  getAllBooks = () => {
+    BooksAPI.getAll()
+    .then( (books) => {
+      this.setState( () => ({
+        books
+      }))
+    })
+  
+    /*
+    const filteredList = this.filterBooks("read")
+    console.log ("bug", filteredList.length)
+    this.setState( () => ({
+      readBooks: this.filterBooks("read")
+    }))
+    this.setState( () => ({
+      wantToBooks: this.filterBooks("wantToRead")
+    }))   
+    this.setState( () => ({
+      currentlyReadBooks: this.filterBooks("currentlyRead")
+    })) 
+    console.log("getAll", this.state.readBooks.length) 
+    console.log("getAll", this.state.wantToBooks.length) 
+    console.log("getAll", this.state.currentlyReadBooks.length)    
+   */
+  }
+  filterBooks = (shelf) => {
+    return this.state.books.filter( (book) => (
+      book.shelf === shelf
+    ))
   }
 
   componentDidMount() {
-    BooksAPI.getAll()
-      .then( (books) => {
-        this.setState( () => ({
-          books
-        }))
-      })
+   return this.getAllBooks()
   }
   render() {
 
+    const readList = this.filterBooks("read")
+    const wantToReadList = this.filterBooks("wantToRead")
+    const currentlyReadingList = this.filterBooks("currentlyReading")
+    console.log ("In Render", readList.length)
+    console.log ("In Render", wantToReadList.length)
+    console.log ("In Render", currentlyReadingList.length)
     return (
 
       <div className="app">
@@ -35,9 +70,9 @@ class BooksApp extends React.Component {
 
         <Route exact path='/' render={ () => (
           <div>
-            <Bookshelf bookshelfTitle="Read" bookshelfName="read" books={this.state.books} />
-            <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={this.state.books} />
-            <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={this.state.books}/>
+            <Bookshelf bookshelfTitle="Read" bookshelfName="read" books={readList} />
+            <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={currentlyReadingList} />
+            <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={wantToReadList}/>
             <div className="open-search">
               <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
             </div>
