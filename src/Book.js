@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import BookShelfChanger from './BookShelfChanger'
+import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
 
@@ -8,8 +9,20 @@ class Book extends Component {
         book: PropTypes.object.isRequired
     }
 
+    state = {
+        thisBook: this.props.book
+    }
+
     moveBook = (event) => {
         console.log('callback', event.target.value)
+        console.log('before callback', this.state.thisBook.shelf)
+        BooksAPI.update(this.state.thisBook, event.target.value)
+        .then( (thisBook) => {
+          this.setState( () => ({
+            thisBook
+          }))
+        })
+        console.log('after callback', this.state.thisBook.shelf)
     }
 
     render() {
