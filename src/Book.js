@@ -22,6 +22,7 @@ class Book extends Component {
             thisBook
           }))
         })
+        this.props.refresh()
         console.log('after callback', this.state.thisBook.shelf)
     }
 

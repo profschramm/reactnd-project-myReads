@@ -13,7 +13,7 @@ class BookGrid extends Component {
                 <ol className="books-grid">
                    {this.props.books.map( (aBook) => (
                        <li  className="book-item" key={aBook.industryIdentifiers[0].identifier}> 
-                            <Book book={aBook}/>
+                            <Book book={aBook} refresh={this.props.refresh}/>
                         </li>
                    ))}
                 </ol>

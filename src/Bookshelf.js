@@ -21,7 +21,7 @@ class Bookshelf extends Component {
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.bookshelfTitle}</h2>
-                <BookGrid books={this.props.books}/>
+                <BookGrid books={this.props.books} refresh={this.props.refresh}/>
             </div>
         )
     }

@@ -13,6 +13,10 @@ class BooksApp extends React.Component {
     wantToReadBooks: [],
   }
 
+  refresh = () => {
+    console.log ("refresh")
+    return this.getAllBooks()
+  }
   getAllBooks = () => {
     BooksAPI.getAll()
     .then( (books) => {
@@ -70,9 +74,9 @@ class BooksApp extends React.Component {
 
         <Route exact path='/' render={ () => (
           <div>
-            <Bookshelf bookshelfTitle="Read" bookshelfName="read" books={readList} />
-            <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={currentlyReadingList} />
-            <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={wantToReadList}/>
+            <Bookshelf bookshelfTitle="Read" bookshelfName="read" books={readList} refresh={this.refresh} />
+            <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={currentlyReadingList} refresh={this.refresh} />
+            <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={wantToReadList} refresh={this.refresh}/>
             <div className="open-search">
               <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
             </div>
