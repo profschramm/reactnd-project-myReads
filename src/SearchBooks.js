@@ -6,7 +6,7 @@ import BookGrid from './BookGrid'
 class SearchBooks extends Component {
 
     state = {
-      query: 'Linux',
+      query: 'Li',
       showingBooks: []
     }
 
@@ -18,6 +18,8 @@ class SearchBooks extends Component {
       this.setState( () => ({
         query: aQuery.trim()
       }))
+      /*this.searchQuery()*/
+
     }
 
     searchQuery = () => {

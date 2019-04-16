@@ -7,17 +7,24 @@ class Bookshelf extends Component {
 
     static propTypes = {
         bookshelfTitle:PropTypes.string.isRequired,
+        bookshelfName:PropTypes.string.isRequired,
         books:PropTypes.array.isRequired
     }
 
     render() {
+
+        const booksOnThisShelf = this.props.books.filter( (book) => (
+            book.shelf === this.props.bookshelfName
+        ))
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.bookshelfTitle}</h2>
-                <BookGrid books={this.props.books}/>
+                <BookGrid books={booksOnThisShelf}/>
             </div>
         )
     }
 }
 
 export default Bookshelf
+
+/*                 <BookGrid books={this.props.books}/> */
