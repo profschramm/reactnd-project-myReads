@@ -5,14 +5,15 @@ import PropTypes from 'prop-types'
 class BookGrid extends Component {
 
     static propTypes = {
-        books: PropTypes.array.isRequired
+        books: PropTypes.array.isRequired,
+        refresh: PropTypes.func.isRequired
     }
     render() {
         return (
             <div className="bookshelf-books">
                 <ol className="books-grid">
                    {this.props.books.map( (aBook) => (
-                       <li  className="book-item" key={aBook.industryIdentifiers[0].identifier}> 
+                       <li  className="book-item" key={aBook.id}> 
                             <Book book={aBook} refresh={this.props.refresh}/>
                         </li>
                    ))}
@@ -23,3 +24,4 @@ class BookGrid extends Component {
 }
 
 export default BookGrid
+/* key={aBook.industryIdentifiers[0].identifier}>  */

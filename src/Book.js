@@ -6,7 +6,8 @@ import * as BooksAPI from './BooksAPI'
 class Book extends Component {
 
     static propTypes = {
-        book: PropTypes.object.isRequired
+        book: PropTypes.object.isRequired,
+        refresh: PropTypes.func.isRequired        
     }
 
     state = {
@@ -14,15 +15,14 @@ class Book extends Component {
     }
 
     moveBook = (event) => {
-        console.log('callback', event.target.value)
         console.log('before callback', this.state.thisBook.shelf)
         BooksAPI.update(this.state.thisBook, event.target.value)
         .then( (thisBook) => {
           this.setState( () => ({
             thisBook
           }))
+          this.props.refresh()
         })
-        this.props.refresh()
         console.log('after callback', this.state.thisBook.shelf)
     }
 
@@ -30,9 +30,9 @@ class Book extends Component {
 
         const thumbnailURL = this.props.book.imageLinks.thumbnail
         const shelfOfBook = this.props.book.shelf
-        const thumbnailString = 'url("' + thumbnailURL + '")'
-        /*const thumbnailString = 'url(\' + thumbnailURL + '\')' */
-
+/*        const thumbnailString = 'url("' + thumbnailURL + '")' */
+        const thumbnailString = `url("${thumbnailURL}")`
+        
         return (
 
             <div className="book">
@@ -42,7 +42,7 @@ class Book extends Component {
                         style={{ 
                             width: 128, 
                             height: 192, 
-                            backgroundImage: {thumbnailString} }}>
+                            backgroundImage: thumbnailString }}>
                     </div>
                     <div className="book-shelf-changer">
                         <BookShelfChanger 

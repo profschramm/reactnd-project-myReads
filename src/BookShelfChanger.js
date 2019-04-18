@@ -1,18 +1,16 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-
-
 class BookShelfChanger extends Component {
 
     static propTypes = {
         shelf: PropTypes.string.isRequired,
-   /*     handleMoveShelf: PropTypesisRequired */
+        handleMoveShelf: PropTypes.func.isRequired 
     }
 
     onThisShelf = (shelf) => {
         if (this.props.shelf === shelf)
-         { return "disabled"}
+         { return true}
         else 
         { return "enabled" }
     };
@@ -52,3 +50,9 @@ export default BookShelfChanger
  
      <option value="currentlyReading" {this.onThisShelf("currentlyReading")} >Currently Reading</option>
 */
+
+/* Eduardo's
+
+               <option value="currentlyReading" disable={this.props.shelf==="currentlyReading"}>Currently Reading</option>
+
+               */

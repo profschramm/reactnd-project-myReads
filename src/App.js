@@ -8,9 +8,6 @@ import Bookshelf from './Bookshelf'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    readBooks: [],
-    currentlyReadBooks: [],
-    wantToReadBooks: [],
   }
 
   refresh = () => {
@@ -24,24 +21,8 @@ class BooksApp extends React.Component {
         books
       }))
     })
-  
-    /*
-    const filteredList = this.filterBooks("read")
-    console.log ("bug", filteredList.length)
-    this.setState( () => ({
-      readBooks: this.filterBooks("read")
-    }))
-    this.setState( () => ({
-      wantToBooks: this.filterBooks("wantToRead")
-    }))   
-    this.setState( () => ({
-      currentlyReadBooks: this.filterBooks("currentlyRead")
-    })) 
-    console.log("getAll", this.state.readBooks.length) 
-    console.log("getAll", this.state.wantToBooks.length) 
-    console.log("getAll", this.state.currentlyReadBooks.length)    
-   */
   }
+  
   filterBooks = (shelf) => {
     return this.state.books.filter( (book) => (
       book.shelf === shelf
