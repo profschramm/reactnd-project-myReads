@@ -8,11 +8,8 @@ class BookShelfChanger extends Component {
         handleMoveShelf: PropTypes.func.isRequired 
     }
 
-    onThisShelf = (shelf) => {
-        if (this.props.shelf === shelf)
-         { return true}
-        else 
-        { return "enabled" }
+    isShelfDisabled (shelf) {
+        return shelf === "none" || shelf === this.props.shelf;
     };
     
     handleInput = (event) => {
@@ -20,23 +17,25 @@ class BookShelfChanger extends Component {
     }
     
     render () {
-        const currentlyReadingDisable = this.onThisShelf("currentlyReading")
-        const readDisable = this.onThisShelf("read")
-        const wantToReadDisable = this.onThisShelf("wantToRead")
-        /*
-        console.log( 'log', currentlyReadingDisable)
-        console.log( 'log', readDisable)
-        console.log( 'log', wantToReadDisable)
-        */
+
 
         /* Advice on select https://reactjs.org/docs/forms.html */
         return (
             <select onChange={this.props.handleMoveShelf}>
                 <option value="move" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
+                <option 
+                    value="currentlyReading"
+                    disabled={this.isShelfDisabled("currentlyReading")}
+                >Currently Reading</option>
+                <option value="wantToRead"
+                    disabled={this.isShelfDisabled("wantToRead")}
+                >Want to Read</option>
+                <option value="read"
+                    disabled={this.isShelfDisabled("read")}
+                >Read</option>
+                <option value="none"
+                    disabled={this.isShelfDisabled("none")}
+                >None</option>
             </select>
         )
     }

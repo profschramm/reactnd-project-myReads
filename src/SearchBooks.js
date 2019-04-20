@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
-import BookGrid from './BookGrid'
-
+import SearchBook from './SearchBook'
 
 class SearchBooks extends Component {
-
-    state = {
-      query: 'Li',
-      showingBooks: []
+    
+   state = {
+      query: '',
+      searchedBooks: []
     }
 
     componentDidMount() {
@@ -18,20 +17,25 @@ class SearchBooks extends Component {
       this.setState( () => ({
         query: aQuery.trim()
       }))
-      /*this.searchQuery()*/
+      this.searchQuery()
+    }
 
+    refresh = () => {
+      console.log ("search refresh")
+      return this.searchQuery()
     }
 
     searchQuery = () => {
       console.log('searchQuery')
       BooksAPI.search(this.state.query)
-        .then( (showingBooks) => {
-          this.setState( () => ({ showingBooks}))
+        .then( (searchedBooks) => {
+          this.setState( () => ({ searchedBooks}))
         })
     }
+
     render() {
 
-        console.log("before")
+        console.log("Search books render")
         /*const variable = this.searchQuery()*/
         /*console.log("After", {variable}) */
 
@@ -39,9 +43,9 @@ class SearchBooks extends Component {
 
             <div className="search-books">
 
-             <p>length =  {this.state.showingBooks.length}</p>
+             <p>length =  {this.state.searchedBooks.length}</p>
              <p>query = {this.state.query}</p>
-            <div className="search-books-bar">
+             <div className="search-books-bar">
               <button 
                 className="close-search" 
                 onClick={() => this.setState({ showSearchPage: false })}>
@@ -66,7 +70,11 @@ class SearchBooks extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                 <BookGrid books={this.state.showingBooks}/>
+                {this.state.searchedBooks.map( (aBook) => (
+                  <li  className="book-item" key={aBook.id}> 
+                      <SearchBook book={aBook} refresh={this.refresh}/>
+                  </li>
+                ))}
               </ol>
             </div>
           </div>
@@ -75,3 +83,4 @@ class SearchBooks extends Component {
 }
 
 export default SearchBooks
+

@@ -29,7 +29,6 @@ class Book extends Component {
     render() {
 
         const thumbnailURL = this.props.book.imageLinks.thumbnail
-        const shelfOfBook = this.props.book.shelf
 /*        const thumbnailString = 'url("' + thumbnailURL + '")' */
         const thumbnailString = `url("${thumbnailURL}")`
         
