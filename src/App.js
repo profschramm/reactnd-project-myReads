@@ -4,6 +4,7 @@ import './App.css'
 import {Route} from 'react-router-dom'
 import SearchBooks from './SearchBooks'
 import Bookshelf from './Bookshelf'
+import {Link} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -37,19 +38,15 @@ class BooksApp extends React.Component {
     const readList = this.filterBooks("read")
     const wantToReadList = this.filterBooks("wantToRead")
     const currentlyReadingList = this.filterBooks("currentlyReading")
-    console.log ("In Render", readList.length)
-    console.log ("In Render", wantToReadList.length)
-    console.log ("In Render", currentlyReadingList.length)
+
     return (
 
       <div className="app">
             { /*JSON.stringify(this.state) */ /* If you want to peek at the JSON */ } 
-        { /*this.state.books.length */}
 
         <Route path='/search' render = { ( {history} ) => (
           <div>
-            <p> Hello </p>
-            <SearchBooks />
+            <SearchBooks refresh={this.refresh}/>
             </div>
         )}/>
 
@@ -59,7 +56,12 @@ class BooksApp extends React.Component {
             <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={currentlyReadingList} refresh={this.refresh} />
             <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={wantToReadList} refresh={this.refresh}/>
             <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+              <Link 
+                to='/search'
+                className='search-books'
+              >
+                <button> Add Books</button>
+              </Link>
             </div>
           </div>
         )}/>
@@ -69,3 +71,4 @@ class BooksApp extends React.Component {
 }
 
 export default BooksApp
+

@@ -15,7 +15,6 @@ class Book extends Component {
     }
 
     moveBook = (event) => {
-        console.log('before callback', this.state.thisBook.shelf)
         BooksAPI.update(this.state.thisBook, event.target.value)
         .then( (thisBook) => {
           this.setState( () => ({
@@ -23,7 +22,6 @@ class Book extends Component {
           }))
           this.props.refresh()
         })
-        console.log('after callback', this.state.thisBook.shelf)
     }
 
     render() {

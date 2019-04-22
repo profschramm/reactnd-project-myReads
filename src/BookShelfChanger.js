@@ -11,13 +11,8 @@ class BookShelfChanger extends Component {
     isShelfDisabled (shelf) {
         return shelf === "none" || shelf === this.props.shelf;
     };
-    
-    handleInput = (event) => {
-        console.log("input", event.target.value)
-    }
-    
+   
     render () {
-
 
         /* Advice on select https://reactjs.org/docs/forms.html */
         return (
@@ -42,16 +37,3 @@ class BookShelfChanger extends Component {
 }
 
 export default BookShelfChanger
-
-/* 
-
-                <option value="currentlyReading" {currentlyReadingDisable} >Currently Reading</option>
- 
-     <option value="currentlyReading" {this.onThisShelf("currentlyReading")} >Currently Reading</option>
-*/
-
-/* Eduardo's
-
-               <option value="currentlyReading" disable={this.props.shelf==="currentlyReading"}>Currently Reading</option>
-
-               */

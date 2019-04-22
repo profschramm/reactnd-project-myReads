@@ -1,8 +1,20 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This program was created from the starter template provided by 
+Udacity's React Fundamentals course. 
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+Known Bugs
+
+Bug: List of SearchedBooks looks repetitve
+Bug: Moving Shelfs work for Read and WantToRead, but not for CurrentlyReading
+Bug: 
+	If I used <Link>
+		History instantly works, even without clicking on the button
+     	else if I use <Link> wrap
+		I get an ugly CLOSE button on top of the arrow
+Bug: How to handle/debug undefined, when I delete search and/or enter search with zero results
+Bug: How to search for two words.
+Bug: Thumbnails for SearchBooks are narrow??
 
 ## TL;DR
 
@@ -22,8 +34,14 @@ To get started developing right away:
 │   └── index.html # DO NOT MODIFY
 └── src
     ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
+    ├── App.js # This is the root of your app. 
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
+    ├── Book.js # Displays one single book on root screen
+    ├── BookGrid.js # Displays a grid of books (on a shelf)  (Probably not needed)
+    ├── Bookshelf.js # Displays a grid of books on a single shelf
+    ├── BookShelfChange # A "control" on a single book, to allow user to move books between shelves
+    ├── SearchBook.js # Displays one single searched book (Like book.js but handles missing fields)
+    ├── SearchBooks.js # Secondary screen for searching for books to add
     ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
