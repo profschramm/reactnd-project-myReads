@@ -12,21 +12,19 @@ class SearchBook extends Component {
 
     render() {
         return (
-            <div className="book">
-                <div className="book-top">
+            <div className="searched-book">
+                <div className="searched-book-top">
                 {(this.props.book.imageLinks) && (
                     <div 
-                        className="book-cover" 
+                        className="searched-book-cover" 
                         style={{ 
                             width: 128, 
                             height: 192, 
                             backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}>
                     </div>
                 )}
-
-                <AddBook book={this.props.book} refresh={this.props.refresh}/>
-
                 </div>
+                <AddBook book={this.props.book} refresh={this.props.refresh}/>
                 <div className="book-title"> {this.props.book.title} </div>
                 {(this.props.book.author) && (
                 <div className="book-authors"> {this.props.book.author}</div> )}
