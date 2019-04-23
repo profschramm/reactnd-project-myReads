@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import serializeForm from 'form-serialize'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 class AddBook extends Component {
@@ -14,8 +13,6 @@ class AddBook extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const values = serializeForm(event.target, { hash : true })
-        console.log('values', values)
-        console.log('select', event.target.value)
         if (this.props.onAddBook) {
             this.props.onAddBook(values)
         }
@@ -44,7 +41,3 @@ class AddBook extends Component {
 }
 
 export default AddBook
-
-/*        
-                      <input type="submit" value="Add Book" />
-                      */

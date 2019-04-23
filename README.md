@@ -5,22 +5,21 @@ Udacity's React Fundamentals course.
 
 Known Bugs
 
-Bug: List of SearchedBooks looks repetitve
-Bug: Moving Shelfs work for Read and WantToRead, but not for CurrentlyReading
-Bug: 
-	If I used <Link>
-		History instantly works, even without clicking on the button
-     	else if I use <Link> wrap
-		I get an ugly CLOSE button on top of the arrow
-Bug: How to handle/debug undefined, when I delete search and/or enter search with zero results
-Bug: How to search for two words.
-Bug: Thumbnails for SearchBooks are narrow??
+ 1. Moving Shelfs work for Read and WantToRead, but not for CurrentlyReading
+ 2. I have a warning about "Multiple modules with names that only differ in casing". I have read
+    about it on the web where it says that it is likely a upper/lower case typing error. But I have been unable to find it.
+    
+
+Question to the Reviewer: The two books "The Linux Command Line" and "Linux Command Line" have the same thumbnail and look like duplicate books on two different shelves.
+  Is this the way the database is, or is this a bug in my code?
+
 
 ## TL;DR
 
 To get started developing right away:
 
 * install all project dependencies with `npm install`
+*    Just in case, you may also have to `npm install prop-types` and `npm install react-router-dom` and `npm install form-serialize`
 * start the development server with `npm start`
 
 ## What You're Getting
@@ -37,10 +36,11 @@ To get started developing right away:
     ├── App.js # This is the root of your app. 
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
     ├── Book.js # Displays one single book on root screen
-    ├── BookGrid.js # Displays a grid of books (on a shelf)  (Probably not needed)
+    ├── BookGrid.js # Displays a grid of books (on a shelf)  Originally intended to share Component between / and /search
+                # Perhaps unnecessary if doing again.
     ├── Bookshelf.js # Displays a grid of books on a single shelf
-    ├── BookShelfChange # A "control" on a single book, to allow user to move books between shelves
-    ├── SearchBook.js # Displays one single searched book (Like book.js but handles missing fields)
+    ├── BookShelfChange # A "control" on a single book on a Bookshelf, to allow user to move books between shelves
+    ├── SearchBook.js # Displays one single searched book (Like book.js but handles missing fields) and has different "control"
     ├── SearchBooks.js # Secondary screen for searching for books to add
     ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
     ├── icons # Helpful images for your app. Use at your discretion.
@@ -105,6 +105,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Cheryl Schramm

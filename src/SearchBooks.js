@@ -17,26 +17,29 @@ class SearchBooks extends Component {
 
     updateQuery = (aQuery) => {
       this.setState( () => ({
-        query: aQuery.trim()
+        query: aQuery
       }))
       BooksAPI.search( aQuery)
       .then( (searchedBooks) => {
-        this.setState(() => ( {searchedBooks})) 
-        if (typeof this.state.searchedBooks === undefined) { 
-          this.setState( {searchedBooks: [] })
-       }
-        console.log ("updated", this.state.searchedBooks)
-      })
-      if (typeof this.state.searchedBooks === undefined) { 
-        this.setState( {searchedBooks: [] })
-      console.log ("updating", this.state.searchedBooks)
-      }
+        /* When you have a POST, it is possible that it fails (e.g. no books found)
+         * In this case, the returned object will not be an array, but an object with an error field.
+         *  (Corresponds to Error 403)  For further study look up "truthy falsy"
+         * This is why the next if-clause first checks whether the returned result is a defined object
+         * and then whether the object has a field called error*/
+        if (!searchedBooks || searchedBooks.error) {
+          this.setState( {searchedBooks: []})
+        } else {
+          this.setState(() => ( {searchedBooks})) 
+        }
+
+        })
+
     }
 
     render() {
 
-         console.log("render in SearchBooks", this.state.searchedBooks.length)
-         if (typeof this.state.searchedBooks === undefined) {
+        // Debugging code: Testing whether a variable is defined
+         if (this.state.searchedBooks === undefined) {
              console.log ("undefined")
          } 
 
@@ -44,18 +47,10 @@ class SearchBooks extends Component {
 
             <div className="search-books">
 
-             <p>length =  {this.state.searchedBooks.length}</p>
-             <p>query = {this.state.query}</p>
-
              <div className="search-books-bar">
-             <button
-                className="close-search"
-                onClick={() => this.setState({ showSearchPage: false })}>
-                Close
-              </button>
-             <Link  className="search-back-button"
-                    to='/'> 
-                <button>Close</button>
+
+              <Link  className="search-back-button" to='/'> 
+                <button className="close-search"> Close </button>
               </Link>            
              
               <div className="search-books-input-wrapper">
@@ -68,7 +63,7 @@ class SearchBooks extends Component {
               </div>
             </div>
 
-            {typeof this.state.searchedBooks !== undefined && this.state.searchedBooks.length !== 0 && (
+            {this.state.searchedBooks !== undefined && this.state.searchedBooks.length !== 0 && (
               <div className="search-books-results">
               <ol className="books-grid">
                 {this.state.searchedBooks.map( (aBook) => (
@@ -79,19 +74,9 @@ class SearchBooks extends Component {
               </ol>
             </div>
             )}
-
           </div>
         )
     }
 }
 
 export default SearchBooks
-
-/*
-
-<button
-  className="close-search"
-  onClick={() => this.setState({ showSearchPage: false })}>
-  Close
-  </button>
-                */

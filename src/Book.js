@@ -24,6 +24,30 @@ class Book extends Component {
         })
     }
 
+    renderAuthors = () => {
+        return (
+            <div className="author-area">
+            {Array.isArray(this.props.book.authors) && (this.props.book.authors.length !== 1) && (
+                <div className="author">
+                    <ul className="author-list">
+                    {this.props.book.authors.map( (anAuthor) => (
+                            <li  className="author-item" key={anAuthor}> 
+                                {anAuthor}
+                            </li>
+                  ))} 
+                    </ul>
+                </div>
+            )}
+
+            {Array.isArray(this.props.book.authors) && (this.props.book.authors.length === 1) && (
+                <div className="author">
+                    {this.props.book.authors[0]}
+                </div>
+            )}      
+            </div>
+
+        )
+    }
     render() {
 
         const thumbnailURL = this.props.book.imageLinks.thumbnail
@@ -49,6 +73,7 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title"> {this.props.book.title} </div>
+                {this.renderAuthors()}
                 <div className="book-authors"> {this.props.book.author}</div>
             </div>
         )
@@ -56,3 +81,13 @@ class Book extends Component {
 }
 
 export default Book
+
+/*
+ {this.props.author.map( (anAuthor) => (
+                            <li  className="author-item" key={aBook.id}> 
+                                {anAuthor}/>
+                            </li>
+                  ))}
+
+                    
+                  */

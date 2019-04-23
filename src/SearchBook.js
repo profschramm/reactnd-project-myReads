@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import BookShelfChanger from './BookShelfChanger'
 import AddBook from './AddBook'
 
 class SearchBook extends Component {
