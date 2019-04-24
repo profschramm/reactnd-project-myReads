@@ -7,7 +7,8 @@ class AddBook extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
-        refresh: PropTypes.func.isRequired
+        refresh: PropTypes.func.isRequired,
+        titleFilter: PropTypes.func.isRequired
     }
 
     state = {
@@ -21,18 +22,17 @@ class AddBook extends Component {
             this.props.onAddBook(values)
         }
         BooksAPI.update(this.props.book, event.target.value)
-        this.props.refresh();
+        .then( () => {
+           this.props.refresh();
+          })
+
     }
 
     render() {
-        
 
         return (
-           
             <div>
-                                    <p> Already on {this.props.book.currentShelf} </p>
                 {/* URL on selecting default value: https://stackoverflow.com/questions/21733847/react-jsx-selecting-selected-on-selected-select-option */}
-                { (this.props.book.shelf === "None") && (
                     <form
                         onSubmit={this.handleSubmit}
                         className='add-book-form'>
@@ -44,11 +44,6 @@ class AddBook extends Component {
                                 <option value="read">Read</option>
                             </select>
                     </form>
-                )}
-                { (this.props.book.shelf !== "None") && (
-                    <p> Already on {this.props.book.shelf} </p>
-
-                )}
             </div>
 
         )

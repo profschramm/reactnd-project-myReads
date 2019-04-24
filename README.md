@@ -3,12 +3,20 @@
 This program was created from the starter template provided by 
 Udacity's React Fundamentals course. 
 
+Interpretations
+ 1. On the search page, I filter out books that are already on shelves and only display books that are not on a shelf.
+
 Known Bugs
 
- 1. Moving Shelfs work for Read and WantToRead, but not for CurrentlyReading
- 2. I have a warning about "Multiple modules with names that only differ in casing". I have read
+ 1. I have a warning about "Multiple modules with names that only differ in casing". I have read
     about it on the web where it says that it is likely a upper/lower case typing error. But I have been unable to find it.
 
+Known Design Flaws
+
+1. I started off with Book.js going to be shared between the main application and the search page, with a different Control component 
+   (one to change shelves and one to add a book).  However, with me learning, I ended up with two different but similar components
+   Book.js and SearchBook.js where SearchBook.js handles the case where thumbnails may not be available. I should refactor these
+   but I'm late with this project and need to get working on the next project. 
 
 Question to the Reviewer: The two books "The Linux Command Line" and "Linux Command Line" have the same thumbnail and look like duplicate books on two different shelves. Is this the way the database is, or is this a bug in my code?
 

@@ -23,20 +23,27 @@ class BooksApp extends React.Component {
     })
   }
   
-  filterBooks = (shelf) => {
+  filterBooksByShelf = (shelf) => {
     return this.state.books.filter( (book) => (
       book.shelf === shelf
     ))
   }
+
+  filterBooksByTitle = (title) => {
+    return this.state.books.filter( (book) => (
+      book.title === title
+    ))
+  }
+
 
   componentDidMount() {
    return this.getAllBooks()
   }
   render() {
 
-    const readList = this.filterBooks("read")
-    const wantToReadList = this.filterBooks("wantToRead")
-    const currentlyReadingList = this.filterBooks("currentlyReading")
+    const readList = this.filterBooksByShelf("read")
+    const wantToReadList = this.filterBooksByShelf("wantToRead")
+    const currentlyReadingList = this.filterBooksByShelf("currentlyReading")
 
     return (
 
@@ -45,7 +52,7 @@ class BooksApp extends React.Component {
 
         <Route path='/search' render = { ( {history} ) => (
           <div>
-            <SearchBooks refresh={this.refresh}/>
+            <SearchBooks refresh={this.refresh} titleFilter={this.filterBooksByTitle}/>
             </div>
         )}/>
 

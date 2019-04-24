@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom'
 class SearchBooks extends Component {
   
   static propTypes = {
-    refresh: PropTypes.func.isRequired
+    refresh: PropTypes.func.isRequired,
+    titleFilter: PropTypes.func.isRequired
   }
 
    state = {
@@ -31,28 +32,20 @@ class SearchBooks extends Component {
         } else {
           this.setState(() => ( {searchedBooks})) 
         }
-
         })
-
     }
 
     render() {
-
-        // Debugging code: Testing whether a variable is defined
+        // Debugging code: Testing whether a variable is defined. Let here as a lesson to myself
          if (this.state.searchedBooks === undefined) {
              console.log ("undefined")
          } 
-
          return (
-
             <div className="search-books">
-
              <div className="search-books-bar">
-
               <Link  className="search-back-button" to='/'> 
                 <button className="close-search"> Close </button>
               </Link>            
-             
               <div className="search-books-input-wrapper">
                 <input 
                   className="search-books"
@@ -68,7 +61,7 @@ class SearchBooks extends Component {
               <ol className="books-grid">
                 {this.state.searchedBooks.map( (aBook) => (
                   <li  className="book-item" key={aBook.id}> 
-                      <SearchBook book={aBook} refresh={this.props.refresh}/>
+                      <SearchBook book={aBook} refresh={this.props.refresh} titleFilter={this.props.titleFilter}/>
                   </li>
                 ))}
               </ol>
