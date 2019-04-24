@@ -26,16 +26,10 @@ class Book extends Component {
 
     renderAuthors = () => {
         return (
-            <div className="author-area">
+            <div className="book-author">
             {Array.isArray(this.props.book.authors) && (this.props.book.authors.length !== 1) && (
                 <div className="author">
-                    <ul className="author-list">
-                    {this.props.book.authors.map( (anAuthor) => (
-                            <li  className="author-item" key={anAuthor}> 
-                                {anAuthor}
-                            </li>
-                  ))} 
-                    </ul>
+                    {this.props.book.authors.map( (anAuthor) => ( anAuthor + " " ))} 
                 </div>
             )}
 
@@ -74,7 +68,6 @@ class Book extends Component {
                 </div>
                 <div className="book-title"> {this.props.book.title} </div>
                 {this.renderAuthors()}
-                <div className="book-authors"> {this.props.book.author}</div>
             </div>
         )
     }
@@ -82,12 +75,13 @@ class Book extends Component {
 
 export default Book
 
-/*
- {this.props.author.map( (anAuthor) => (
-                            <li  className="author-item" key={aBook.id}> 
-                                {anAuthor}/>
+/* Left for learning: Code that prints out authors as a list
+                   
+                   <ul className="author-list">
+                    {this.props.book.authors.map( (anAuthor) => (
+                            <li  className="author-item" key={anAuthor}> 
+                                {anAuthor}
                             </li>
-                  ))}
-
-                    
-                  */
+                  ))} 
+                    </ul>
+*/

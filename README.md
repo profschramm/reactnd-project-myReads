@@ -8,10 +8,9 @@ Known Bugs
  1. Moving Shelfs work for Read and WantToRead, but not for CurrentlyReading
  2. I have a warning about "Multiple modules with names that only differ in casing". I have read
     about it on the web where it says that it is likely a upper/lower case typing error. But I have been unable to find it.
-    
 
-Question to the Reviewer: The two books "The Linux Command Line" and "Linux Command Line" have the same thumbnail and look like duplicate books on two different shelves.
-  Is this the way the database is, or is this a bug in my code?
+
+Question to the Reviewer: The two books "The Linux Command Line" and "Linux Command Line" have the same thumbnail and look like duplicate books on two different shelves. Is this the way the database is, or is this a bug in my code?
 
 
 ## TL;DR

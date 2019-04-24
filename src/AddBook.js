@@ -10,6 +10,10 @@ class AddBook extends Component {
         refresh: PropTypes.func.isRequired
     }
 
+    state = {
+        currentShelf: 'None'
+      }
+  
     handleSubmit = (event) => {
         event.preventDefault()
         const values = serializeForm(event.target, { hash : true })
@@ -22,20 +26,31 @@ class AddBook extends Component {
 
     render() {
         
+
         return (
+           
             <div>
-                <form
-                    onSubmit={this.handleSubmit}
-                    className='add-book-form'>
-                        <select onChange={this.handleSubmit}>
-                            <option selected value="add" disabled>Add to..</option>
-                            <option value="none">None</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                        </select>
-                 </form>
+                                    <p> Already on {this.props.book.currentShelf} </p>
+                {/* URL on selecting default value: https://stackoverflow.com/questions/21733847/react-jsx-selecting-selected-on-selected-select-option */}
+                { (this.props.book.shelf === "None") && (
+                    <form
+                        onSubmit={this.handleSubmit}
+                        className='add-book-form'>
+                            <select value="add" onChange={this.handleSubmit}>
+                                <option value="add" disabled>Add to..</option>
+                                <option value="none">None</option>
+                                <option value="currentlyReading">Currently Reading</option>
+                                <option value="wantToRead">Want to Read</option>
+                                <option value="read">Read</option>
+                            </select>
+                    </form>
+                )}
+                { (this.props.book.shelf !== "None") && (
+                    <p> Already on {this.props.book.shelf} </p>
+
+                )}
             </div>
+
         )
     }
 }
