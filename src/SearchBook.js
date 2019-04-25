@@ -6,10 +6,13 @@ class SearchBook extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
-        refresh: PropTypes.func.isRequired        
+        books: PropTypes.array.isRequired,
+        refresh: PropTypes.func.isRequired,      
+        titleFilter: PropTypes.func.isRequired      
     }
+   
 
-    renderAuthors = () => {
+  renderAuthors = () => {
         return (
             <div className="book-author">
             {Array.isArray(this.props.book.authors) && (this.props.book.authors.length !== 1) && (
@@ -29,20 +32,35 @@ class SearchBook extends Component {
     }
 
     render() {
-     
-        const booksAlreadyOnShelf = this.props.titleFilter(this.props.book.title);
-        /* Debugging Code 
-        console.log("list", booksAlreadyOnShelf)
-        if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0) ) {
-            console.log("On the shelf", this.props.book.title, booksAlreadyOnShelf[0].shelf)
-        } else {
-            console.log("Not on shelf", this.props.book.title)
-        }
-        */
- 
+
         return (
 
             <div className="searched-book">
+
+                <div className = "searched-book-top"> 
+                {(this.props.book.imageLinks) && (
+                    <div className="searched-book-cover" 
+                        style={{ 
+                            width: 128, 
+                            height: 192, 
+                            backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}>
+                    </div>
+                )}
+                     <AddBook book={this.props.book} books={this.props.books} refresh={this.props.refresh} titleFilter={this.props.titleFilter}/>
+                     <div className="book-title"> {this.props.book.title} </div>
+                     {this.renderAuthors()}            
+                </div>
+         
+            </div>
+        )
+    }
+}
+
+export default SearchBook
+
+/* To display only those books NOT on a shelf at the moment (My original interpretation)
+
+           <div className="searched-book">
 
             {(booksAlreadyOnShelf === undefined) || (booksAlreadyOnShelf.length === 0) && (
                 <div className = "searched-book-top"> 
@@ -63,8 +81,6 @@ class SearchBook extends Component {
             )}
               
             </div>
-        )
-    }
-}
 
-export default SearchBook
+
+            */

@@ -7,14 +7,11 @@ class AddBook extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
+        books: PropTypes.array.isRequired,
         refresh: PropTypes.func.isRequired,
         titleFilter: PropTypes.func.isRequired
     }
-
-    state = {
-        currentShelf: 'None'
-      }
-  
+ 
     handleSubmit = (event) => {
         event.preventDefault()
         const values = serializeForm(event.target, { hash : true })
@@ -28,7 +25,41 @@ class AddBook extends Component {
 
     }
 
+    findShelf = () => {
+        const booksAlreadyOnShelf = this.props.books.filter( (book) => ( book.title === this.props.book.title ))
+        if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0)) {
+            // console.log ("AddBooks: found shelf ", booksAlreadyOnShelf[0].currentShelf)
+            return booksAlreadyOnShelf[0].currentShelf
+        } else {
+            return "add"
+        }  
+    }
+    
+    /* Originally I had passed down a function in props, but the reviewer wanted me to pass down books 
+    getCurrentShelf() {
+        const booksAlreadyOnShelf = this.props.titleFilter(this.props.book.title);
+        if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0)) {
+            return booksAlreadyOnShelf[0].currentShelf
+        } else {
+            return "add"
+        }  
+    }
+    */
+
+
     render() {
+
+        const booksAlreadyOnShelf = this.props.titleFilter(this.props.book.title);
+
+        var selectDefault
+
+        if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0) ) {
+            console.log("AddBook: On the shelf", this.props.book.title, booksAlreadyOnShelf[0].shelf)
+            selectDefault = booksAlreadyOnShelf[0].shelf
+        } else {
+            selectDefault = "add"
+           // console.log("Not on shelf", this.props.book.title)
+        }
 
         return (
             <div>
@@ -36,7 +67,7 @@ class AddBook extends Component {
                     <form
                         onSubmit={this.handleSubmit}
                         className='add-book-form'>
-                            <select value="add" onChange={this.handleSubmit}>
+                            <select value={selectDefault} onChange={this.handleSubmit}>
                                 <option value="add" disabled>Add to..</option>
                                 <option value="none">None</option>
                                 <option value="currentlyReading">Currently Reading</option>
@@ -51,3 +82,4 @@ class AddBook extends Component {
 }
 
 export default AddBook
+

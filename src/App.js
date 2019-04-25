@@ -52,7 +52,7 @@ class BooksApp extends React.Component {
 
         <Route path='/search' render = { ( {history} ) => (
           <div>
-            <SearchBooks refresh={this.refresh} titleFilter={this.filterBooksByTitle}/>
+            <SearchBooks books={this.state.books} refresh={this.refresh} titleFilter={this.filterBooksByTitle}/>
             </div>
         )}/>
 

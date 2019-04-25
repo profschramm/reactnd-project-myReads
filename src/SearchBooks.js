@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 class SearchBooks extends Component {
   
   static propTypes = {
+    books: PropTypes.array.isRequired,
     refresh: PropTypes.func.isRequired,
     titleFilter: PropTypes.func.isRequired
   }
@@ -68,7 +69,7 @@ class SearchBooks extends Component {
               <ol className="books-grid">
                 {this.state.searchedBooks.map( (aBook) => (
                   <li  className="book-item" key={aBook.id}> 
-                      <SearchBook book={aBook} refresh={this.props.refresh} titleFilter={this.props.titleFilter}/>
+                      <SearchBook book={aBook} books={this.props.books} refresh={this.props.refresh} titleFilter={this.props.titleFilter}/>
                   </li>
                 ))}
               </ol>
