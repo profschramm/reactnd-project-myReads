@@ -18,9 +18,7 @@ class BookShelfChanger extends Component {
         return (
             <select value="move" onChange={this.props.handleMoveShelf}>
                 <option value="move" disabled>Move to...</option>
-                <option value="none"
-                    disabled={this.isShelfDisabled("none")}
-                >None</option>
+                <option value="none">None</option>
                 <option value="read"
                     disabled={this.isShelfDisabled("read")}
                 >Read</option>
