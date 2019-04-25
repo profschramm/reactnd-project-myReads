@@ -44,21 +44,22 @@ class Book extends Component {
     }
     render() {
 
-        const thumbnailURL = this.props.book.imageLinks.thumbnail
-/*        const thumbnailString = 'url("' + thumbnailURL + '")' */
-        const thumbnailString = `url("${thumbnailURL}")`
+ //       Two different ways of constructing a string
+//        const thumbnailString = 'url("' + thumbnailURL + '")' 
+  //      const thumbnailString = `url("${thumbnailURL}")`
         
         return (
 
             <div className="book">
                <div className="book-top">
-                    <div 
-                        className="book-cover" 
+               {(this.props.book.imageLinks) && (
+                    <div className="book-cover" 
                         style={{ 
                             width: 128, 
                             height: 192, 
-                            backgroundImage: thumbnailString }}>
+                            backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}>
                     </div>
+                )}
                     <div className="book-shelf-changer">
                         <BookShelfChanger 
                             shelf={this.props.book.shelf}
@@ -85,3 +86,4 @@ export default Book
                   ))} 
                     </ul>
 */
+
