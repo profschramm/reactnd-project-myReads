@@ -43,7 +43,7 @@ class AddBook extends Component {
         var selectDefault
 
         if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0) ) {
-            console.log("AddBook: On the shelf", this.props.book.title, booksAlreadyOnShelf[0].shelf)
+            // console.log("AddBook: On the shelf", this.props.book.title, booksAlreadyOnShelf[0].shelf)
             selectDefault = booksAlreadyOnShelf[0].shelf
         } else {
             selectDefault = "none"  // I prefer to return "add" to have a default display of "Add to " in the select
