@@ -27,12 +27,19 @@ class SearchBooks extends Component {
          *  (Corresponds to Error 403)  For further study look up "truthy falsy"
          * This is why the next if-clause first checks whether the returned result is a defined object
          * and then whether the object has a field called error*/
-        if (!searchedBooks || searchedBooks.error) {
-          this.setState( {searchedBooks: []})
-        } else {
-          this.setState(() => ( {searchedBooks})) 
+        if (aQuery === this.state.query) {
+          /* This line was suggested by reviewer: When typing, each letter invokes a request
+           * to the server, but due to the asynchronous nature of Promises, the requests
+           * may not be handled in order.  This if(query == this.state.query) ensures that 
+           * you are setting the state according to the appropriate request
+           */
+          if (!searchedBooks || searchedBooks.error) {
+            this.setState( {searchedBooks: []})
+          } else {
+            this.setState(() => ( {searchedBooks})) 
+          }
         }
-        })
+      })
     }
 
     render() {
