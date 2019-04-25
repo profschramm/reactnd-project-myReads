@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom'
 import SearchBooks from './SearchBooks'
 import Bookshelf from './Bookshelf'
 import {Link} from 'react-router-dom'
+import {Switch} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class BooksApp extends React.Component {
   refresh = () => {
     return this.getAllBooks()
   }
-  
+
   getAllBooks = () => {
     BooksAPI.getAll()
     .then( (books) => {
@@ -51,27 +52,29 @@ class BooksApp extends React.Component {
       <div className="app">
             { /*JSON.stringify(this.state) */ /* If you want to peek at the JSON */ } 
 
-        <Route path='/search' render = { ( {history} ) => (
-          <div>
-            <SearchBooks books={this.state.books} refresh={this.refresh} titleFilter={this.filterBooksByTitle}/>
-            </div>
-        )}/>
+      <Switch>
+          <Route path='/search' render = { ( {history} ) => (
+            <div>
+              <SearchBooks books={this.state.books} refresh={this.refresh} titleFilter={this.filterBooksByTitle}/>
+              </div>
+          )}/>
 
-        <Route exact path='/' render={ () => (
-          <div>
-            <Bookshelf bookshelfTitle="Read" bookshelfName="read" books={readList} refresh={this.refresh} />
-            <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={currentlyReadingList} refresh={this.refresh} />
-            <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={wantToReadList} refresh={this.refresh}/>
-            <div className="open-search">
-              <Link 
-                to='/search'
-                className='search-books'
-              >
-                <button> Add Books</button>
-              </Link>
+          <Route exact path='/' render={ () => (
+            <div>
+              <Bookshelf bookshelfTitle="Read" bookshelfName="read" books={readList} refresh={this.refresh} />
+              <Bookshelf bookshelfTitle="Currently Reading" bookshelfName="currentlyReading" books={currentlyReadingList} refresh={this.refresh} />
+              <Bookshelf bookshelfTitle="Want To Read" bookshelfName="wantToRead" books={wantToReadList} refresh={this.refresh}/>
+              <div className="open-search">
+                <Link 
+                  to='/search'
+                  className='search-books'
+                >
+                  <button> Add Books</button>
+                </Link>
+              </div>
             </div>
-          </div>
-        )}/>
+          )}/>
+        </Switch>
       </div>
     ) 
   }
