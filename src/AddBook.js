@@ -25,30 +25,19 @@ class AddBook extends Component {
 
     }
 
+    /* Alternative function: If you want to pass down books, instead of a function */
+
     findShelf = () => {
         const booksAlreadyOnShelf = this.props.books.filter( (book) => ( book.title === this.props.book.title ))
         if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0)) {
             // console.log ("AddBooks: found shelf ", booksAlreadyOnShelf[0].currentShelf)
             return booksAlreadyOnShelf[0].currentShelf
         } else {
-            return "add"
+            return "none"   // I prefer to return "add" to have a default display of "Add to " in the select
         }  
     }
     
-    /* Originally I had passed down a function in props, but the reviewer wanted me to pass down books 
-    getCurrentShelf() {
-        const booksAlreadyOnShelf = this.props.titleFilter(this.props.book.title);
-        if ((booksAlreadyOnShelf !== undefined) && (booksAlreadyOnShelf.length !== 0)) {
-            return booksAlreadyOnShelf[0].currentShelf
-        } else {
-            return "add"
-        }  
-    }
-    */
-
-
     render() {
-
         const booksAlreadyOnShelf = this.props.titleFilter(this.props.book.title);
 
         var selectDefault
@@ -57,7 +46,7 @@ class AddBook extends Component {
             console.log("AddBook: On the shelf", this.props.book.title, booksAlreadyOnShelf[0].shelf)
             selectDefault = booksAlreadyOnShelf[0].shelf
         } else {
-            selectDefault = "add"
+            selectDefault = "none"  // I prefer to return "add" to have a default display of "Add to " in the select
            // console.log("Not on shelf", this.props.book.title)
         }
 
