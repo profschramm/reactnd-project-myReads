@@ -24,4 +24,3 @@ class BookGrid extends Component {
 }
 
 export default BookGrid
-/* key={aBook.industryIdentifiers[0].identifier}>  */

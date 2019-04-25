@@ -14,6 +14,7 @@ class BooksApp extends React.Component {
   refresh = () => {
     return this.getAllBooks()
   }
+  
   getAllBooks = () => {
     BooksAPI.getAll()
     .then( (books) => {
